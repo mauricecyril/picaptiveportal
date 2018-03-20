@@ -1,0 +1,105 @@
+#!/bin/bash
+
+# Basic Captive Portal for Raspberry Pi Zero and Raspberry Pi 3
+# Based on the Anyfesto Install Script for the PI
+# See original project: https://github.com/tomhiggins/anyfesto 
+
+# Install the Basic Packages and Infrastructure
+
+echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+echo "Starting the Offline Captive Portal Install...."
+echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+echo "Installing the Basic Packages and Infrastructure."
+echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install lighttpd
+sudo apt-get -y install dnsmasq
+sudo apt-get -y install isc-dhcp-server
+sudo apt-get -y install hostapd
+sudo apt-get -y install git zip unzip
+sudo rm /bin/sh
+sudo ln /bin/bash /bin/sh
+sudo chmod a+rw /bin/sh
+cd ~
+mkdir configs
+
+# Setup the Directories and lighttpd 
+echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+echo "Setting Up the Directories and Lighttp Web Server"
+echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+mkdir /home/pi/content
+sudo ln -s /home/pi/content /var/www/html/content   
+cd ~
+wget https://github.com/twbs/bootstrap/releases/download/v3.3.7/bootstrap-3.3.7-dist.zip
+unzip bootstrap-3.3.7-dist.zip 
+sudo cp -r bootstrap-3.3.7-dist/* /var/www/html/
+cd /var/www/html/js
+sudo wget https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js
+
+
+
+echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+echo "Setup Mumble Server for secure voip and chat"
+echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+sudo apt-get -y install mumble-server
+echo "When prompted answer the following questions as noted...."
+echo "   Autostart:  Yes  "
+echo "   High Priority: No   "
+echo "   SuperUser: Set the admin password  "
+sudo dpkg-reconfigure mumble-server
+cd ~/configs
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/deployables/current/mumble-server.ini
+chmod a+rx *
+sudo mv -f mumble-server.ini /etc/mumble-server.ini
+sudo update-rc.d mumble-server enable
+cd ~/content
+mkdir apps
+chmod a+rx apps/
+cd apps
+wget https://f-droid.org/repo/com.morlunk.mumbleclient_73.apk
+chmod a+rx *
+cd ~
+
+# Setup Network and Captive Portal 
+echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+echo "Setting Up The Network, Access Point and Captive Portal"
+echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+cd ~/configs
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/deployables/current/dhcpdpi.conf 
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/deployables/current/dnsmasqpi.conf
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/deployables/current/hostapd
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/deployables/current/hostapdpi.conf
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/deployables/current/interfacespi
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/deployables/current/isc-dhcp-serverpi
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/deployables/current/hostspi
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/deployables/current/hostnamepi
+
+sudo chown root:root *
+sudo chmod a+rx *
+
+sudo mv -f dhcpdpi.conf /etc/dhcp/dhcpd.conf
+sudo mv -f dnsmasqpi.conf /etc/dnsmasq.conf
+sudo mv -f hostapd /etc/default/hostapd
+sudo mv -f hostapdpi.conf /etc/hostapd/hostapd.conf 
+sudo mv -f interfacespi /etc/network/interfaces 
+sudo mv -f isc-dhcp-serverpi /etc/default/isc-dhcp-server
+sudo mv -f lighttpd.conf /etc/lighttpd/lighttpd.conf
+sudo mv -f hostspi /etc/hosts
+sudo mv -f hostnamepi /etc/hostname
+
+
+
+echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+echo "Installation Complete...Preparing To Reboot"
+echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+read -p "Press any key to reboot the PI."
+sudo /etc/init.d/hostapd  stop
+sudo systemctl daemon-reload 
+sudo update-rc.d mumble-server enable
+sudo update-rc.d hostapd enable
+sudo update-rc.d isc-dhcp-server enable 
+sudo ifconfig wlan0 down
+sudo ifconfig wlan0 up
+sudo sync 
+sudo reboot
