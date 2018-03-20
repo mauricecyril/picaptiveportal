@@ -49,7 +49,7 @@ echo "   High Priority: No   "
 echo "   SuperUser: Set the admin password  "
 sudo dpkg-reconfigure mumble-server
 cd ~/configs
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/deployables/current/mumble-server.ini
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/mumble-server.ini
 chmod a+rx *
 sudo mv -f mumble-server.ini /etc/mumble-server.ini
 sudo update-rc.d mumble-server enable
@@ -66,14 +66,15 @@ echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
 echo "Setting Up The Network, Access Point and Captive Portal"
 echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
 cd ~/configs
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/deployables/current/dhcpdpi.conf 
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/deployables/current/dnsmasqpi.conf
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/deployables/current/hostapd
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/deployables/current/hostapdpi.conf
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/deployables/current/interfacespi
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/deployables/current/isc-dhcp-serverpi
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/deployables/current/hostspi
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/deployables/current/hostnamepi
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/dhcpd.conf 
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/dnsmasq.conf
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/hostapd
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/hostapd.conf
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/interfaces
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/isc-dhcp-server
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/lighttpd.conf
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/hosts
+wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/hostname
 
 sudo chown root:root *
 sudo chmod a+rx *
