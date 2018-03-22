@@ -5,7 +5,12 @@ wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/pica
 
 sudo bash install.sh
 
-
+## Requirements
+* Raspberry Pi Zero W, Raspberry Pi 3, or Raspberry Pi 2 with Redbear WifiHat
+* A Windows, OSX or Linux machine to write the Raspbian Lite image and activate ssh and setup wifi
+* An internet connection
+* SSH client to run the script after first boot
+___
 ## Installation Instructions
 ### Step 1
 
@@ -29,3 +34,4 @@ sudo bash install.sh
 ### Step 10
 ### Step 11
 ### Step 12
+___
