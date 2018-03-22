@@ -15,26 +15,53 @@ echo "Starting the Offline Captive Portal Install...."
 echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
 echo "Installing the Basic Packages and Infrastructure."
 echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+
+# Upgrade and Install Packages
+# Packages Needed for Captive Portal and Access Point: lighttpd dnsmasq isc-dhcp-server hostapd php-cgi avahi-daemon 
+# Unzip Packages (Just in Case): git zip unzip tar bzip2 
+# Additional Packages for Offline Dev: perl python python3 nano python3-django python3-flask
 sudo apt-get -y update
 sudo apt-get -y upgrade
+sudo apt-get -y dist-upgrade
 sudo apt-get -y install lighttpd dnsmasq isc-dhcp-server hostapd git zip unzip tar bzip2 perl python python3 php-cgi avahi-daemon nano python3-django python3-flask
 
 sudo rm /bin/sh
 sudo ln /bin/bash /bin/sh
 sudo chmod a+rw /bin/sh
 cd ~
+
+# Make config folder that will be used to store config files from https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles
 mkdir configs
 
 # Setup the Directories and lighttpd 
 echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
 echo "Setting Up the Directories and Lighttp Web Server"
 echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+
+# Create a "Content" folder in the home folder
 mkdir /home/pi/content
+
+# Link the content folder to the html folder
 sudo ln -s /home/pi/content /var/www/html/content   
+
+# Remove default index.html from /var/www/html
+cd /var/www/html
+sudo mv index.html index.backup
+
+# Download new index html
+sudo wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/html/index.html
+
+# Download bootstrap and copy to /var/www/html folder
 cd ~
 wget https://github.com/twbs/bootstrap/releases/download/v3.3.7/bootstrap-3.3.7-dist.zip
 unzip bootstrap-3.3.7-dist.zip 
 sudo cp -r bootstrap-3.3.7-dist/* /var/www/html/
+
+# Download carousel style sheet
+cd /var/www/html/css
+sudo wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/html/carousel.css
+
+# Download jsquery
 cd /var/www/html/js
 sudo wget https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js
 
