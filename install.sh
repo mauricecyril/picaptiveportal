@@ -68,6 +68,26 @@ sudo mv -f hosts /etc/hosts
 sudo mv -f hostname /etc/hostname
 
 
+# Install UFW as firewall
+echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+echo "Setting Up Firewall"
+echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
+
+# Install ufw
+sudo apt-get -y install ufw
+
+# Setup default rules with incoming blocked
+sudo ufw default allow outgoing
+sudo ufw default deny incoming
+
+# Update the incoming to only allow SSH (22), HTTP (80), HTTPS (443)
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw allow https
+
+# Enable firewall
+sudo ufw --force enable
+
 
 echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
 echo "Installation Complete...Preparing To Reboot"
