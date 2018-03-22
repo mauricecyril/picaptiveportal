@@ -109,7 +109,14 @@ sudo ufw default deny incoming
 
 # Update the incoming to allow DHCP(67 and 68) and DNS(53)
 sudo ufw allow from any port 68 to any port 67 proto udp
+sudo ufw allow to any port 67 proto udp
+sudo ufw allow to any port 68 proto udp
 sudo ufw allow 53
+sudo ufw allow bootps
+sudo ufw allow dnsmasq
+sudo ufw allow dhclient
+#ufw allow domain
+
 
 # Update the incoming to only allow SSH (22), HTTP (80), HTTPS (443)
 sudo ufw allow ssh
