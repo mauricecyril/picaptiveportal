@@ -2,7 +2,11 @@
 
 # Basic Captive Portal for Raspberry Pi Zero and Raspberry Pi 3
 # Based on the Anyfesto Install Script for the PI
-# See original project: https://github.com/tomhiggins/anyfesto 
+# See original project: https://github.com/tomhiggins/anyfesto
+#
+# Run the following in the command shell
+# wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/install.sh
+# bash install.sh
 
 # Install the Basic Packages and Infrastructure
 
@@ -40,28 +44,28 @@ echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
 echo "Setting Up The Network, Access Point and Captive Portal"
 echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
 cd ~/configs
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/dhcpd.conf 
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/dnsmasq.conf
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/hostapd
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/hostapd.conf
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/interfaces
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/isc-dhcp-server
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/lighttpd.conf
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/hosts
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/configfiles/hostname
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/dhcpd.conf 
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/dnsmasq.conf
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/hostapd
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/hostapd.conf
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/interfaces
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/isc-dhcp-server
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/lighttpd.conf
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/hosts
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/hostname
 
 sudo chown root:root *
 sudo chmod a+rx *
 
-sudo mv -f dhcpdpi.conf /etc/dhcp/dhcpd.conf
-sudo mv -f dnsmasqpi.conf /etc/dnsmasq.conf
+sudo mv -f dhcpd.conf /etc/dhcp/dhcpd.conf
+sudo mv -f dnsmasq.conf /etc/dnsmasq.conf
 sudo mv -f hostapd /etc/default/hostapd
-sudo mv -f hostapdpi.conf /etc/hostapd/hostapd.conf 
-sudo mv -f interfacespi /etc/network/interfaces 
-sudo mv -f isc-dhcp-serverpi /etc/default/isc-dhcp-server
+sudo mv -f hostapd.conf /etc/hostapd/hostapd.conf 
+sudo mv -f interfaces /etc/network/interfaces 
+sudo mv -f isc-dhcp-server /etc/default/isc-dhcp-server
 sudo mv -f lighttpd.conf /etc/lighttpd/lighttpd.conf
-sudo mv -f hostspi /etc/hosts
-sudo mv -f hostnamepi /etc/hostname
+sudo mv -f hosts /etc/hosts
+sudo mv -f hostname /etc/hostname
 
 
 
