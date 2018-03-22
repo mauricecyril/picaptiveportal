@@ -2,6 +2,6 @@
 Offline Raspberry Pi Captive Portal inspired by Anyfesto Pi
 
 
-wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/Install.sh
+wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/install.sh
 
-bash Install.sh
+bash install.sh
