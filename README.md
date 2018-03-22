@@ -1,5 +1,5 @@
 # picaptiveportal
-Offline Raspberry Pi Captive Portal inspired by Anyfesto Pi
+Offline Raspberry Pi Captive Portal / Physical Web Space inspired by Anyfesto Pi.
 
 wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/install.sh
 
@@ -8,13 +8,18 @@ sudo bash install.sh
 
 ## Installation Instructions
 ### Step 1
+
+
 ### Step 2
 ### Step 3
+Download the install script:
 ```shell
 wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/install.sh
+```
+Run the script as super user (sudo):
+```shell
 sudo bash install.sh
 ```
-
 ### Step 4
 ### Step 5
 ### Step 6
