@@ -17,7 +17,8 @@ sudo apt-get -y install lighttpd
 sudo apt-get -y install dnsmasq
 sudo apt-get -y install isc-dhcp-server
 sudo apt-get -y install hostapd
-sudo apt-get -y install git zip unzip
+sudo apt-get -y install git zip unzip tar bzip2 perl python python3 php5-cgi avahi-daemon 
+
 sudo rm /bin/sh
 sudo ln /bin/bash /bin/sh
 sudo chmod a+rw /bin/sh
