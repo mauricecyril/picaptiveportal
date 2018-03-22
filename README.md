@@ -10,12 +10,10 @@ sudo bash install.sh
 ### Step 1
 ### Step 2
 ### Step 3
-'''
-
+```shell
 wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/install.sh
-
 sudo bash install.sh
-'''
+```
 
 ### Step 4
 ### Step 5
