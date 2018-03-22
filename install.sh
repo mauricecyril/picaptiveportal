@@ -39,29 +39,6 @@ cd /var/www/html/js
 sudo wget https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js
 
 
-
-echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
-echo "Setup Mumble Server for secure voip and chat"
-echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
-sudo apt-get -y install mumble-server
-echo "When prompted answer the following questions as noted...."
-echo "   Autostart:  Yes  "
-echo "   High Priority: No   "
-echo "   SuperUser: Set the admin password  "
-sudo dpkg-reconfigure mumble-server
-cd ~/configs
-wget https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/configfiles/mumble-server.ini
-chmod a+rx *
-sudo mv -f mumble-server.ini /etc/mumble-server.ini
-sudo update-rc.d mumble-server enable
-cd ~/content
-mkdir apps
-chmod a+rx apps/
-cd apps
-wget https://f-droid.org/repo/com.morlunk.mumbleclient_73.apk
-chmod a+rx *
-cd ~
-
 # Setup Network and Captive Portal 
 echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
 echo "Setting Up The Network, Access Point and Captive Portal"
