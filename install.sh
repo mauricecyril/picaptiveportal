@@ -13,11 +13,7 @@ echo "Installing the Basic Packages and Infrastructure."
 echo "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_"
 sudo apt-get -y update
 sudo apt-get -y upgrade
-sudo apt-get -y install lighttpd
-sudo apt-get -y install dnsmasq
-sudo apt-get -y install isc-dhcp-server
-sudo apt-get -y install hostapd
-sudo apt-get -y install git zip unzip tar bzip2 perl python python3 php5-cgi avahi-daemon nano python3-django python3-flask
+sudo apt-get -y install lighttpd dnsmasq isc-dhcp-server hostapd git zip unzip tar bzip2 perl python python3 php5-cgi avahi-daemon nano python3-django python3-flask
 
 sudo rm /bin/sh
 sudo ln /bin/bash /bin/sh
