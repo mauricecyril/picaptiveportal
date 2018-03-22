@@ -107,6 +107,10 @@ sudo apt-get -y install ufw
 sudo ufw default allow outgoing
 sudo ufw default deny incoming
 
+# Update the incoming to allow DHCP(67 and 68) and DNS(53)
+sudo ufw allow from any port 68 to any port 67 proto udp
+sudo ufw allow 53
+
 # Update the incoming to only allow SSH (22), HTTP (80), HTTPS (443)
 sudo ufw allow ssh
 sudo ufw allow http
