@@ -62,8 +62,15 @@ network={
 ```
 
 ### Step 7
+Unmount the SD Card and insert the card into a Raspberry Pi
 
-Download the install script:
+### Step 8
+If you're connected to a screen and have a keyboard plugged into your Pi skip to step 9
+
+If you're connecting to the Pi via SSH wait till your router registers the Pi as a client. Log into your router and find out the ip address of the raspberry pi. Once you've deteremined the ip of the Pi on your network ssh into the device.
+
+### Step 9
+Login to the Pi and download the install script:
 ```shell
 wget --no-check-certificate  https://raw.githubusercontent.com/mauricecyril/picaptiveportal/master/install.sh
 ```
@@ -71,13 +78,11 @@ Run the script as super user (sudo):
 ```shell
 sudo bash install.sh
 ```
-### Step 8
-### Step 9
 ### Step 10
-### Step 11
-### Step 12
+Once the script completes, reboot the Pi and you should see a wifi SSID called "picaptiveportal"
 
 ## Credits
 * https://github.com/tomhiggins/anyfesto
 * https://www.raspberrypi.org/forums/viewtopic.php?t=191252
 * https://www.raspberrypi.org/documentation/configuration/security.md
+* https://askubuntu.com/questions/580433/how-can-i-allow-ap-hotspot-in-ufw-ubuntu-14-04
